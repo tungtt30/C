@@ -35,6 +35,17 @@ const StoreContextProvider = ({ children }) => {
             dispatch({ type: STORES_LOADED_FAIL })
         }
     }
+    //get user manager store 
+    const getUserStore = async (username) => {
+        try {
+            const response = await axios.get(`${apiUrl}/store/${username}`)
+            if (response.data.success) {
+                dispatch({ type: STORES_LOADED_SUCCESS, payload: response.data.store })
+            }
+        } catch (error) {
+            dispatch({ type: STORES_LOADED_FAIL })
+        }
+    }
 
     // get one item
     const getItem = async (id) => {
@@ -48,20 +59,20 @@ const StoreContextProvider = ({ children }) => {
 
 
 
-    // // Add post
-    // const addPost = async newPost => {
-    //     try {
-    //         const response = await axios.post(`${apiUrl}/posts`, newPost)
-    //         if (response.data.success) {
-    //             dispatch({ type: ADD_STORE, payload: response.data.stores })
-    //             return response.data
-    //         }
-    //     } catch (error) {
-    //         return error.response.data ? error.response.data : { success: false, message: 'Server error' }
-    //     }
-    // }
+    // Add post
+    const addStore = async newStore => {
+        try {
+            const response = await axios.post(`${apiUrl}/store`, newStore)
+            if (response.data.success) {
+                dispatch({ type: ADD_STORE, payload: response.data.stores })
+                return response.data
+            }
+        } catch (error) {
+            return error.response.data ? error.response.data : { success: false, message: 'Server error' }
+        }
+    }
 
-    // // delete post
+    // delete post
     // const deleteStore = async storeId => {
     //     try {
     //         const response = await axios.delete(`${apiUrl}/posts/${storeId}`)
@@ -87,15 +98,15 @@ const StoreContextProvider = ({ children }) => {
     // }
 
 
-    // // find post click when update 
-    // const findStore = storeId => {
-    //     const store = storeState.stores.find(store => store._id === storeId)
-    //     dispatch({ type: FIND_STORE, payload: store })
-    // }
+    // find post click when update 
+    const findStore = storeId => {
+        const store = storeState.stores.find(store => store._id === storeId)
+        dispatch({ type: FIND_STORE, payload: store })
+    }
 
 
     // post context data 
-    const storeContextData = { storeState, getStores, getItem }
+    const storeContextData = { storeState, getStores, getItem, addStore, showAddStoreModal, setShowAddStoreModal, getUserStore, showUpdateStoreModal, setShowUpdateStoreModal }
     return (
         <StoreContext.Provider value={storeContextData}>
             {children}

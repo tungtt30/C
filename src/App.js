@@ -8,6 +8,8 @@ import About from './views/About'
 import ProtectedRoute from './components/routing/ProtectedRoute'
 import PostContextProvider from './contexts/PostContext'
 import StoreContextProvider from './contexts/StoreContext'
+import ManagerStore from './components/stores/ManagerStore'
+
 
 
 function App() {
@@ -22,6 +24,7 @@ function App() {
                             <Route exact path='/register' render={props => <Auth {...props} authRoute='register' />} />
                             <ProtectedRoute exact path='/about' component={About} />
                             <ProtectedRoute exact path='/dashboard' component={Dashboard} />
+                            <ProtectedRoute exact path='/manager' component={ManagerStore} />
                         </Switch>
                     </Router>
                 </PostContextProvider>

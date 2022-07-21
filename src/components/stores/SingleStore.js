@@ -1,6 +1,6 @@
 // import './base.css'
 
-const SingleStore = ({ store: { _id, item, description, cost } }) => {
+const SingleStore = ({ store: { _id, item, description, cost, user: { username } } }) => {
     let lowCost = 0
 
     return (
@@ -12,8 +12,7 @@ const SingleStore = ({ store: { _id, item, description, cost } }) => {
                 </div>
                 <h4 className="home-product-item__name">{item}</h4>
                 <div className="home-product-item__price">
-                    <span className="home-product-item__price-old">{cost} $</span>
-                    <span className="home-product-item__price-current">{lowCost} $</span>
+                    <span className="home-product-item__price-current">{cost} $</span>
                 </div>
                 <div className="home-product-item__des">
                     <span>{description}</span>
@@ -24,6 +23,9 @@ const SingleStore = ({ store: { _id, item, description, cost } }) => {
                         <i className="home-product-item_like-icon-empty far fa-heart"></i>
                         <i className="home-product-item_like-icon-fill fas fa-heart"></i>
                     </span>
+                    <div className="home-product-user">
+                        <span>Người đăng: {username}</span>
+                    </div>
                     <div className="home-product-item__rating">
                         <i className="home-product-item__star--gold far fa-star"></i>
                         <i className="home-product-item__star--gold far fa-star"></i>
@@ -37,10 +39,7 @@ const SingleStore = ({ store: { _id, item, description, cost } }) => {
                     <i className="fas fa-check"></i>
                     Yêu thích
                 </div>
-                <div className="home-product-item__sale-off">
-                    <span className="home-product-item__sale-off-percent">10%</span>
-                    <span className="home-product-item__sale-off-label">GIẢM</span>
-                </div>
+
             </div>
         </div>
     )

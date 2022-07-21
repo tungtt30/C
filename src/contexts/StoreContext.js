@@ -35,6 +35,19 @@ const StoreContextProvider = ({ children }) => {
             dispatch({ type: STORES_LOADED_FAIL })
         }
     }
+
+    // get one item
+    const getItem = async (id) => {
+        try {
+            const response = await axios.get(`${apiUrl}/store/${id}`)
+            dispatch({ type: STORES_LOADED_SUCCESS, payload: response.data.store })
+        } catch (error) {
+            dispatch({ type: STORES_LOADED_FAIL })
+        }
+    }
+
+
+
     // // Add post
     // const addPost = async newPost => {
     //     try {
@@ -82,7 +95,7 @@ const StoreContextProvider = ({ children }) => {
 
 
     // post context data 
-    const storeContextData = { storeState, getStores, }
+    const storeContextData = { storeState, getStores, getItem }
     return (
         <StoreContext.Provider value={storeContextData}>
             {children}

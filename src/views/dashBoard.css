@@ -237,3 +237,6 @@ i.home-product-item_like-icon-fill {
 .home-product__pagination {
     margin: 48px 0 32px ;
 }
+.home-product-user {
+    margin-left: 10px;
+}

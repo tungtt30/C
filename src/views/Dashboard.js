@@ -16,7 +16,7 @@ import AuthContext from "../contexts/AuthContext"
 const Dashboard = () => {
 
     // const { authState: { user: { username } } } = useContext(AuthContext)
-    const { storeState: { store, stores, storesLoading }, getStores } = useContext(StoreContext)
+    const { storeState: { store, stores, storesLoading }, getStores, getItem } = useContext(StoreContext)
 
 
     useEffect(() => getStores(), [])
